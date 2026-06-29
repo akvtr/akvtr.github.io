@@ -1,101 +1,182 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>akvtr</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Segoe UI', system-ui, sans-serif;
-      background: #0d1117;
-      color: #c9d1d9;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .card {
-      max-width: 480px;
-      width: 100%;
-      padding: 2.5rem;
-      border: 1px solid #30363d;
-      border-radius: 12px;
-      background: #161b22;
-    }
-
-    .avatar {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      background: #21262d;
-      border: 2px solid #30363d;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      margin-bottom: 1.25rem;
-    }
-
-    h1 {
-      font-size: 1.5rem;
-      color: #f0f6fc;
-      margin-bottom: 0.25rem;
-    }
-
-    .handle {
-      font-size: 0.95rem;
-      color: #8b949e;
-      margin-bottom: 1rem;
-    }
-
-    .bio {
-      font-size: 0.95rem;
-      line-height: 1.65;
-      color: #c9d1d9;
-      margin-bottom: 1.5rem;
-    }
-
-    .links {
-      display: flex;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-    }
-
-    .links a {
-      display: inline-block;
-      padding: 0.4rem 1rem;
-      border: 1px solid #30363d;
-      border-radius: 6px;
-      color: #c9d1d9;
-      text-decoration: none;
-      font-size: 0.875rem;
-      transition: border-color 0.15s, color 0.15s;
-    }
-
-    .links a:hover {
-      border-color: #58a6ff;
-      color: #58a6ff;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>~/portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Geist:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="card">
-    <div class="avatar">👤</div>
-    <h1>akvtr</h1>
-    <p class="handle">@akvtr</p>
-    <p class="bio">
-      Software developer interested in AI, systems, and the web.
-    </p>
-    <div class="links">
-      <a href="https://github.com/akvtr" target="_blank" rel="noopener">GitHub</a>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#hero" class="nav-logo">~/portfolio</a>
+    <ul class="nav-links">
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#pages">Pages</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-left">
+      <p class="hero-eyebrow">IoT / XR / Dev</p>
+      <h1 class="hero-headline">
+        Building at the edge<br>
+        of <span class="hl">physical</span><br>
+        and <span class="hl">virtual</span>.
+      </h1>
+      <p class="hero-sub">IoT systems, XR experiences, and clean code - from sensors to shaders, from MariaDB to Modular Avatar.</p>
+      <div class="hero-ctas">
+        <a href="#skills" class="btn-primary">View Skills</a>
+        <a href="#contact" class="btn-ghost">Contact</a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="terminal-card">
+        <div class="term-bar">
+          <span class="term-dot dot-r"></span>
+          <span class="term-dot dot-a"></span>
+          <span class="term-dot dot-g"></span>
+          <span class="term-title">bash -- ~/portfolio</span>
+        </div>
+        <div class="term-body">
+          <div class="t-row">
+            <span class="t-prompt">$</span>
+            <span class="t-cmd">whoami</span>
+          </div>
+          <div class="t-out">
+            <div><span class="t-key">role</span><span class="t-val">IoT engineer / XR creator</span></div>
+            <div><span class="t-key">focus</span><span class="t-val">embedded systems, virtual worlds</span></div>
+            <div><span class="t-key">status</span><span class="t-val">building</span></div>
+          </div>
+          <div class="t-gap"></div>
+          <div class="t-row">
+            <span class="t-prompt">$</span>
+            <span class="t-cmd">ls ./interests</span>
+          </div>
+          <div class="t-out">
+            <div><span class="t-key">langs</span><span class="t-val">Java&nbsp; C&nbsp; C++&nbsp; Python&nbsp; JS</span></div>
+            <div><span class="t-key">data</span><span class="t-val">Pandas&nbsp; scikit-learn&nbsp; MySQL</span></div>
+            <div><span class="t-key">xr</span><span class="t-val">Unity&nbsp; VRChat SDK&nbsp; lilToon</span></div>
+            <div><span class="t-key">tools</span><span class="t-val">Git&nbsp; GitHub&nbsp; VS Code</span></div>
+          </div>
+          <div class="t-gap"></div>
+          <div class="t-row">
+            <span class="t-prompt">$</span>
+            <span class="t-cursor" aria-hidden="true"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- SKILLS -->
+  <div class="section-inner" id="skills">
+    <h2 class="section-heading">Skills</h2>
+    <div class="skills-grid">
+      <!-- Row 1: four cards -->
+      <div class="skill-card">
+        <p class="skill-cat">Java</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Java</span>
+          <span class="skill-tag">Servlet</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <p class="skill-cat">JavaScript</p>
+        <div class="skill-tags">
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">HTML</span>
+          <span class="skill-tag">CSS</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <p class="skill-cat">C / C++</p>
+        <div class="skill-tags">
+          <span class="skill-tag">C</span>
+          <span class="skill-tag">C++</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <p class="skill-cat">Python</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">Pandas</span>
+          <span class="skill-tag">scikit-learn</span>
+        </div>
+      </div>
+      <!-- Row 2: 1 + 2-span + 1 -->
+      <div class="skill-card">
+        <p class="skill-cat">Databases</p>
+        <div class="skill-tags">
+          <span class="skill-tag">MySQL</span>
+          <span class="skill-tag">MariaDB</span>
+        </div>
+      </div>
+      <div class="skill-card w2">
+        <p class="skill-cat">XR / Tools</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Unity</span>
+          <span class="skill-tag">VRChat SDK</span>
+          <span class="skill-tag">Modular Avatar</span>
+          <span class="skill-tag">lilToon</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <p class="skill-cat">Dev Tools</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Git</span>
+          <span class="skill-tag">GitHub</span>
+          <span class="skill-tag">VS Code</span>
+        </div>
+      </div>
     </div>
   </div>
+
+  <hr class="divider">
+
+  <!-- OTHER PAGES -->
+  <div class="section-inner" id="pages">
+    <h2 class="section-heading">Other Pages</h2>
+    <div class="page-card">
+      <a href="./vrc/" class="page-card-link">
+        <span class="page-badge">VRChat</span>
+        <h3 class="page-title">Avatar Works</h3>
+        <p class="page-desc">Chimera avatar builds, face tracking, BOOTH assets</p>
+        <span class="page-arrow">View page -&gt;</span>
+      </a>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- CONTACT -->
+  <div class="section-inner" id="contact">
+    <div class="contact-wrap">
+      <div class="contact-card">
+        <h2 class="contact-title">Get in touch</h2>
+        <p class="contact-sub">Open to work, collaboration, and VRChat conversations.</p>
+        <a href="https://github.com/" class="btn-gh">
+          <svg class="gh-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+          </svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p class="footer-text">~/portfolio &middot; built with HTML &amp; CSS</p>
+  </footer>
+
 </body>
 </html>
