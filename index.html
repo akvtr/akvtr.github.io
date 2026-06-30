@@ -3,99 +3,310 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>404 PAGE NOT FOUND</title>
+  <title>~/akvtr</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Geist:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="./style.css">
   <style>
-    .not-found {
+    /* ── Lab dropdown in nav ── */
+    .nav-lab {
+      position: relative;
+    }
+
+    .nav-lab-btn {
+      font-family: var(--mono);
+      font-size: 0.8125rem;
+      color: var(--text-2);
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      gap: 0.3em;
+      transition: color 0.18s ease;
+    }
+    .nav-lab-btn:hover { color: var(--text-1); }
+    .nav-lab-btn[aria-expanded="true"] { color: var(--text-1); }
+
+    .lab-arrow {
+      display: inline-block;
+      transition: transform 0.22s ease;
+      font-style: normal;
+    }
+    .nav-lab-btn[aria-expanded="true"] .lab-arrow {
+      transform: rotate(180deg);
+    }
+
+    .lab-menu {
+      position: absolute;
+      top: calc(100% + 0.75rem);
+      right: 0;
+      min-width: 200px;
+      background: rgba(6, 8, 20, 0.92);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--r-card);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.055),
+        0 16px 48px rgba(0,0,0,0.5);
+      list-style: none;
+      padding: 0.5rem;
+      overflow: hidden;
+      /* closed state */
+      opacity: 0;
+      transform: translateY(-6px) scale(0.97);
+      pointer-events: none;
+      transition:
+        opacity 0.22s ease,
+        transform 0.22s ease;
+    }
+    .lab-menu.open {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+
+    .lab-menu li a {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      padding: 0.6rem 0.75rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.15s ease;
+    }
+    .lab-menu li a:hover {
+      background: rgba(181,123,255,0.08);
+    }
+    .lab-menu-name {
+      font-family: var(--mono);
+      font-size: 0.8125rem;
+      color: var(--text-1);
+      letter-spacing: 0.02em;
+    }
+    .lab-menu-desc {
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      color: var(--text-3);
+      font-weight: 300;
+    }
+
+    /* ── Hero ── */
+    .root-hero {
       min-height: 100dvh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 4rem var(--px);
+      padding: calc(var(--nav-h) + 3rem) var(--px) 4rem;
       text-align: center;
     }
 
-    .nf-card {
+    .root-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      color: var(--accent);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .root-title {
+      font-family: var(--mono);
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 700;
+      color: var(--text-1);
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin-bottom: 1.25rem;
+    }
+
+    .root-title .hl { color: var(--accent); }
+
+    .root-sub {
+      font-family: var(--sans);
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--text-2);
+      line-height: 1.65;
+      max-width: 42ch;
+      margin: 0 auto 3.5rem;
+    }
+
+    /* ── Section cards grid ── */
+    .hub-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      width: 100%;
+      max-width: 860px;
+    }
+
+    .hub-card {
       background: var(--glass-bg);
       border: 1px solid var(--glass-border);
       border-radius: var(--r-card);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
-      padding: 3rem 3.5rem;
-      max-width: 480px;
-      width: 100%;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.045),
+        0 12px 36px rgba(0,0,0,0.32);
+      text-decoration: none;
+      color: inherit;
+      padding: 1.75rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+    }
+    .hub-card:hover {
+      border-color: var(--accent-border);
       box-shadow:
         inset 0 1px 0 rgba(255,255,255,0.055),
-        0 28px 72px rgba(0,0,0,0.4);
+        0 16px 48px rgba(0,0,0,0.42),
+        0 0 0 1px var(--accent-border);
+      transform: translateY(-2px);
     }
 
-    .nf-code {
-      font-family: var(--mono);
-      font-size: clamp(4rem, 12vw, 6rem);
-      font-weight: 700;
-      color: var(--accent);
-      letter-spacing: -0.05em;
-      line-height: 1;
-      margin-bottom: 1.25rem;
-      opacity: 0.9;
-    }
-
-    .nf-label {
+    .hub-card-badge {
       font-family: var(--mono);
       font-size: 0.6875rem;
-      color: var(--text-3);
-      letter-spacing: 0.12em;
+      color: var(--accent);
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      margin-bottom: 1rem;
     }
 
-    .nf-message {
+    .hub-card-title {
+      font-family: var(--mono);
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--text-1);
+      letter-spacing: -0.025em;
+    }
+
+    .hub-card-desc {
       font-family: var(--sans);
-      font-size: 0.9375rem;
+      font-size: 0.875rem;
       font-weight: 300;
       color: var(--text-2);
-      line-height: 1.65;
-      margin-bottom: 2.25rem;
+      line-height: 1.55;
+      margin-top: 0.25rem;
     }
 
-    .nf-term {
+    .hub-card-arrow {
       font-family: var(--mono);
-      font-size: 0.8125rem;
-      color: var(--text-3);
-      background: rgba(0,0,0,0.3);
-      border: 1px solid var(--glass-border);
-      border-radius: var(--r-tag);
-      padding: 0.5rem 0.875rem;
-      margin-bottom: 2.25rem;
-      text-align: left;
+      font-size: 0.75rem;
+      color: var(--accent);
+      margin-top: auto;
+      padding-top: 1rem;
+      opacity: 0.7;
+      transition: opacity 0.15s ease;
+    }
+    .hub-card:hover .hub-card-arrow { opacity: 1; }
+
+    @media (max-width: 640px) {
+      .hub-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
-    .nf-term .t-prompt { color: var(--accent); margin-right: 0.5rem; }
-    .nf-term .t-cmd    { color: var(--text-2); }
-
-    @media (max-width: 480px) {
-      .nf-card { padding: 2rem 1.5rem; }
+    @media (prefers-reduced-motion: reduce) {
+      .lab-menu,
+      .lab-arrow,
+      .hub-card { transition: none !important; }
     }
   </style>
 </head>
 <body>
 
-  <div class="not-found">
-    <div class="nf-card">
-      <p class="nf-code">404</p>
-      <p class="nf-label">Page not found</p>
-      <p class="nf-message">The path you requested does not exist.</p>
-      <div class="nf-term">
-        <span class="t-prompt">$</span>
-        <span class="t-cmd">cd ~/portfolio</span>
-      </div>
-      <a href="/" class="btn-primary">Back to home</a>
+  <nav>
+    <a href="/" class="nav-logo">~/akvtr</a>
+    <ul class="nav-links">
+      <li><a href="/portfolio/">Portfolio</a></li>
+      <li class="nav-lab">
+        <button class="nav-lab-btn" aria-expanded="false" aria-controls="lab-menu">
+          Lab <span class="lab-arrow" aria-hidden="true">▾</span>
+        </button>
+        <ul class="lab-menu" id="lab-menu" role="menu">
+          <li role="none">
+            <a href="/lab/class-gen/" role="menuitem">
+              <span class="lab-menu-name">class-gen</span>
+              <span class="lab-menu-desc">UML class diagram editor</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li><a href="/vrc/">VRC</a></li>
+    </ul>
+  </nav>
+
+  <main class="root-hero">
+    <p class="root-eyebrow">IoT · XR · Dev</p>
+    <h1 class="root-title">
+      ~/akvtr
+    </h1>
+    <p class="root-sub">
+      IoT systems, VRChat avatar customization, and dev tools —
+      from sensors to shaders, from MariaDB to Modular Avatar.
+    </p>
+
+    <div class="hub-grid">
+      <a href="/portfolio/" class="hub-card">
+        <span class="hub-card-badge">Main</span>
+        <span class="hub-card-title">Portfolio</span>
+        <span class="hub-card-desc">Skills, projects, and contact.</span>
+        <span class="hub-card-arrow">View →</span>
+      </a>
+
+      <a href="/lab/class-gen/" class="hub-card">
+        <span class="hub-card-badge">Lab</span>
+        <span class="hub-card-title">class-gen</span>
+        <span class="hub-card-desc">UML class diagram editor with dark design.</span>
+        <span class="hub-card-arrow">Open tool →</span>
+      </a>
+
+      <a href="/vrc/" class="hub-card">
+        <span class="hub-card-badge">VRChat</span>
+        <span class="hub-card-title">Avatar Works</span>
+        <span class="hub-card-desc">Chimera avatar assembly and face tracking setup.</span>
+        <span class="hub-card-arrow">View page →</span>
+      </a>
     </div>
-  </div>
+  </main>
+
+  <footer>
+    <p class="footer-text">~/akvtr &middot; built with HTML &amp; CSS</p>
+  </footer>
+
+  <script>
+    const btn = document.querySelector('.nav-lab-btn');
+    const menu = document.getElementById('lab-menu');
+
+    btn.addEventListener('click', () => {
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!isOpen));
+      menu.classList.toggle('open', !isOpen);
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!btn.contains(e.target) && !menu.contains(e.target)) {
+        btn.setAttribute('aria-expanded', 'false');
+        menu.classList.remove('open');
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        btn.setAttribute('aria-expanded', 'false');
+        menu.classList.remove('open');
+        btn.focus();
+      }
+    });
+  </script>
 
 </body>
 </html>

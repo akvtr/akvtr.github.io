@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 PAGE NOT FOUND</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Geist:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+  <style>
+    .not-found {
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem var(--px);
+      text-align: center;
+    }
+
+    .nf-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--r-card);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      padding: 3rem 3.5rem;
+      max-width: 480px;
+      width: 100%;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.055),
+        0 28px 72px rgba(0,0,0,0.4);
+    }
+
+    .nf-code {
+      font-family: var(--mono);
+      font-size: clamp(4rem, 12vw, 6rem);
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: -0.05em;
+      line-height: 1;
+      margin-bottom: 1.25rem;
+      opacity: 0.9;
+    }
+
+    .nf-label {
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      color: var(--text-3);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .nf-message {
+      font-family: var(--sans);
+      font-size: 0.9375rem;
+      font-weight: 300;
+      color: var(--text-2);
+      line-height: 1.65;
+      margin-bottom: 2.25rem;
+    }
+
+    .nf-term {
+      font-family: var(--mono);
+      font-size: 0.8125rem;
+      color: var(--text-3);
+      background: rgba(0,0,0,0.3);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--r-tag);
+      padding: 0.5rem 0.875rem;
+      margin-bottom: 2.25rem;
+      text-align: left;
+    }
+
+    .nf-term .t-prompt { color: var(--accent); margin-right: 0.5rem; }
+    .nf-term .t-cmd    { color: var(--text-2); }
+
+    @media (max-width: 480px) {
+      .nf-card { padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="not-found">
+    <div class="nf-card">
+      <p class="nf-code">404</p>
+      <p class="nf-label">Page not found</p>
+      <p class="nf-message">The path you requested does not exist.</p>
+      <div class="nf-term">
+        <span class="t-prompt">$</span>
+        <span class="t-cmd">cd ~/</span>
+      </div>
+      <a href="/" class="btn-primary">Back to home</a>
+    </div>
+  </div>
+
+</body>
+</html>
