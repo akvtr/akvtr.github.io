@@ -107,6 +107,10 @@
       background: none;
       padding: 0;
       overflow: hidden;
+      /* Soft-fade the left/right edges so queued slides blend out
+         instead of being hard-cropped by the container. */
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%);
     }
 
     .slides-track {
@@ -122,15 +126,15 @@
       box-sizing: border-box;
       padding: 0 6px;
       transform: scale(0.82);
-      opacity: 0.38;
-      filter: brightness(0.52);
+      opacity: 0.55;
+      filter: blur(5px) brightness(0.55);
       transition: transform 0.5s ease, opacity 0.5s ease, filter 0.5s ease;
     }
 
     .slide.active {
       transform: scale(1);
       opacity: 1;
-      filter: brightness(1);
+      filter: blur(0) brightness(1);
     }
 
     .slide img {
@@ -469,7 +473,7 @@
     var originals= [].slice.call(track.querySelectorAll('.slide'));
     var dots     = [].slice.call(el.querySelectorAll('.dot'));
     var N        = originals.length;
-    var FRAC     = 0.76; // 各カードがコンテナ幅の 76% を占める
+    var FRAC     = 0.70; // 各カードがコンテナ幅の 70% を占める
     var idx      = 1;    // extended track 上の現在位置 (1 = orig-0)
     var busy     = false;
 
