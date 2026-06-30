@@ -9,92 +9,6 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Geist:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./style.css">
   <style>
-    /* ── Lab dropdown in nav ── */
-    .nav-lab {
-      position: relative;
-    }
-
-    .nav-lab-btn {
-      font-family: var(--mono);
-      font-size: 0.8125rem;
-      color: var(--text-2);
-      background: none;
-      border: none;
-      padding: 0;
-      cursor: pointer;
-      letter-spacing: 0.02em;
-      display: flex;
-      align-items: center;
-      gap: 0.3em;
-      transition: color 0.18s ease;
-    }
-    .nav-lab-btn:hover { color: var(--text-1); }
-    .nav-lab-btn[aria-expanded="true"] { color: var(--text-1); }
-
-    .lab-arrow {
-      display: inline-block;
-      transition: transform 0.22s ease;
-      font-style: normal;
-    }
-    .nav-lab-btn[aria-expanded="true"] .lab-arrow {
-      transform: rotate(180deg);
-    }
-
-    .lab-menu {
-      position: absolute;
-      top: calc(100% + 0.75rem);
-      right: 0;
-      min-width: 200px;
-      background: rgba(6, 8, 20, 0.92);
-      border: 1px solid var(--glass-border);
-      border-radius: var(--r-card);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.055),
-        0 16px 48px rgba(0,0,0,0.5);
-      list-style: none;
-      padding: 0.5rem;
-      overflow: hidden;
-      /* closed state */
-      opacity: 0;
-      transform: translateY(-6px) scale(0.97);
-      pointer-events: none;
-      transition:
-        opacity 0.22s ease,
-        transform 0.22s ease;
-    }
-    .lab-menu.open {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-      pointer-events: auto;
-    }
-
-    .lab-menu li a {
-      display: flex;
-      flex-direction: column;
-      gap: 0.2rem;
-      padding: 0.6rem 0.75rem;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: background 0.15s ease;
-    }
-    .lab-menu li a:hover {
-      background: rgba(181,123,255,0.08);
-    }
-    .lab-menu-name {
-      font-family: var(--mono);
-      font-size: 0.8125rem;
-      color: var(--text-1);
-      letter-spacing: 0.02em;
-    }
-    .lab-menu-desc {
-      font-family: var(--sans);
-      font-size: 0.75rem;
-      color: var(--text-3);
-      font-weight: 300;
-    }
-
     /* ── Hero ── */
     .root-hero {
       min-height: 100dvh;
@@ -102,7 +16,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: calc(var(--nav-h) + 3rem) var(--px) 4rem;
+      padding: 5rem var(--px) 4rem;
       text-align: center;
     }
 
@@ -134,19 +48,21 @@
       color: var(--text-2);
       line-height: 1.65;
       max-width: 42ch;
-      margin: 0 auto 3.5rem;
+      margin: 0 auto 2.75rem;
     }
 
-    /* ── Section cards grid ── */
-    .hub-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
+    /* ── Section cards (compact vertical list) ── */
+    .hub-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
       width: 100%;
-      max-width: 860px;
+      max-width: 480px;
+      text-align: left;
     }
 
     .hub-card {
+      position: relative;
       background: var(--glass-bg);
       border: 1px solid var(--glass-border);
       border-radius: var(--r-card);
@@ -157,10 +73,10 @@
         0 12px 36px rgba(0,0,0,0.32);
       text-decoration: none;
       color: inherit;
-      padding: 1.75rem 1.5rem;
+      padding: 0.95rem 2.75rem 0.95rem 1.1rem;
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
+      gap: 0.3rem;
       transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
     }
     .hub-card:hover {
@@ -172,77 +88,102 @@
       transform: translateY(-2px);
     }
 
+    .hub-card-head {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
     .hub-card-badge {
       font-family: var(--mono);
-      font-size: 0.6875rem;
+      font-size: 0.625rem;
       color: var(--accent);
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
+      border: 1px solid var(--accent-border);
+      border-radius: var(--r-tag);
+      padding: 0.15rem 0.4rem;
+      line-height: 1;
     }
 
     .hub-card-title {
       font-family: var(--mono);
-      font-size: 1.125rem;
+      font-size: 0.9375rem;
       font-weight: 700;
       color: var(--text-1);
-      letter-spacing: -0.025em;
+      letter-spacing: -0.02em;
     }
 
     .hub-card-desc {
       font-family: var(--sans);
-      font-size: 0.875rem;
+      font-size: 0.8125rem;
       font-weight: 300;
       color: var(--text-2);
-      line-height: 1.55;
-      margin-top: 0.25rem;
+      line-height: 1.5;
     }
 
-    .hub-card-arrow {
+    /* ── Right-side indicators (link arrow / lab chevron) ── */
+    .hub-card-arrow,
+    .lab-arrow {
+      position: absolute;
+      right: 1.1rem;
+      top: 50%;
       font-family: var(--mono);
-      font-size: 0.75rem;
+      font-size: 0.875rem;
       color: var(--accent);
-      margin-top: auto;
-      padding-top: 1rem;
-      opacity: 0.7;
-      transition: opacity 0.15s ease;
+      opacity: 0.5;
+      transform: translateY(-50%);
     }
-    .hub-card:hover .hub-card-arrow { opacity: 1; }
+    .hub-card-arrow { transition: opacity 0.15s ease, transform 0.15s ease; }
+    .hub-card:hover .hub-card-arrow {
+      opacity: 1;
+      transform: translateY(-50%) translateX(3px);
+    }
+
+    /* ── Lab accordion (moved from nav into main) ── */
+    .hub-lab-btn {
+      /* reset button defaults so it matches the card links */
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .lab-arrow { transition: opacity 0.15s ease, transform 0.22s ease; }
+    .hub-lab-btn:hover .lab-arrow { opacity: 1; }
+    .hub-lab-btn[aria-expanded="true"] .lab-arrow {
+      transform: translateY(-50%) rotate(180deg);
+    }
+
+    .lab-panel {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.3s ease;
+    }
+    .lab-panel.open {
+      grid-template-rows: 1fr;
+    }
+    .lab-panel-inner {
+      overflow: hidden;
+      min-height: 0;
+    }
+    .lab-panel-inner .hub-card {
+      margin-top: 0.75rem;
+      margin-left: 1.25rem;
+    }
 
     @media (max-width: 640px) {
-      .hub-grid {
-        grid-template-columns: 1fr;
-      }
+      .lab-panel-inner .hub-card { margin-left: 0.6rem; }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .lab-menu,
       .lab-arrow,
+      .lab-panel,
       .hub-card { transition: none !important; }
     }
   </style>
 </head>
 <body>
-
-  <nav>
-    <a href="/" class="nav-logo">~/akvtr</a>
-    <ul class="nav-links">
-      <li><a href="/portfolio/">Portfolio</a></li>
-      <li class="nav-lab">
-        <button class="nav-lab-btn" aria-expanded="false" aria-controls="lab-menu">
-          Lab <span class="lab-arrow" aria-hidden="true">▾</span>
-        </button>
-        <ul class="lab-menu" id="lab-menu" role="menu">
-          <li role="none">
-            <a href="/lab/class-gen/" role="menuitem">
-              <span class="lab-menu-name">class-gen</span>
-              <span class="lab-menu-desc">UML class diagram editor</span>
-            </a>
-          </li>
-        </ul>
-      </li>
-      <li><a href="/vrc/">VRC</a></li>
-    </ul>
-  </nav>
 
   <main class="root-hero">
     <p class="root-eyebrow">IoT · XR · Dev</p>
@@ -254,26 +195,46 @@
       from sensors to shaders, from MariaDB to Modular Avatar.
     </p>
 
-    <div class="hub-grid">
+    <div class="hub-list">
       <a href="/portfolio/" class="hub-card">
-        <span class="hub-card-badge">Main</span>
-        <span class="hub-card-title">Portfolio</span>
+        <span class="hub-card-head">
+          <span class="hub-card-badge">Main</span>
+          <span class="hub-card-title">Portfolio</span>
+        </span>
         <span class="hub-card-desc">Skills, projects, and contact.</span>
-        <span class="hub-card-arrow">View →</span>
+        <span class="hub-card-arrow" aria-hidden="true">→</span>
       </a>
 
-      <a href="/lab/class-gen/" class="hub-card">
-        <span class="hub-card-badge">Lab</span>
-        <span class="hub-card-title">class-gen</span>
-        <span class="hub-card-desc">UML class diagram editor with dark design.</span>
-        <span class="hub-card-arrow">Open tool →</span>
-      </a>
+      <div class="hub-lab">
+        <button class="hub-card hub-lab-btn" aria-expanded="false" aria-controls="lab-panel">
+          <span class="hub-card-head">
+            <span class="hub-card-badge">Lab</span>
+            <span class="hub-card-title">Lab</span>
+          </span>
+          <span class="hub-card-desc">Experimental tools and prototypes.</span>
+          <span class="lab-arrow" aria-hidden="true">▾</span>
+        </button>
+        <div class="lab-panel" id="lab-panel">
+          <div class="lab-panel-inner">
+            <a href="/lab/class-gen/" class="hub-card">
+              <span class="hub-card-head">
+                <span class="hub-card-badge">Tool</span>
+                <span class="hub-card-title">class-gen</span>
+              </span>
+              <span class="hub-card-desc">UML class diagram editor with dark design.</span>
+              <span class="hub-card-arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
 
       <a href="/vrc/" class="hub-card">
-        <span class="hub-card-badge">VRChat</span>
-        <span class="hub-card-title">Avatar Works</span>
+        <span class="hub-card-head">
+          <span class="hub-card-badge">VRChat</span>
+          <span class="hub-card-title">Avatar Works</span>
+        </span>
         <span class="hub-card-desc">Chimera avatar assembly and face tracking setup.</span>
-        <span class="hub-card-arrow">View page →</span>
+        <span class="hub-card-arrow" aria-hidden="true">→</span>
       </a>
     </div>
   </main>
@@ -283,28 +244,13 @@
   </footer>
 
   <script>
-    const btn = document.querySelector('.nav-lab-btn');
-    const menu = document.getElementById('lab-menu');
+    const btn = document.querySelector('.hub-lab-btn');
+    const panel = document.getElementById('lab-panel');
 
     btn.addEventListener('click', () => {
       const isOpen = btn.getAttribute('aria-expanded') === 'true';
       btn.setAttribute('aria-expanded', String(!isOpen));
-      menu.classList.toggle('open', !isOpen);
-    });
-
-    document.addEventListener('click', (e) => {
-      if (!btn.contains(e.target) && !menu.contains(e.target)) {
-        btn.setAttribute('aria-expanded', 'false');
-        menu.classList.remove('open');
-      }
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        btn.setAttribute('aria-expanded', 'false');
-        menu.classList.remove('open');
-        btn.focus();
-      }
+      panel.classList.toggle('open', !isOpen);
     });
   </script>
 

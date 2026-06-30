@@ -78,6 +78,26 @@ Elevated variant (Pages card, contact card) uses `var(--accent-border)` instead 
 
 ---
 
+## Landing Hub (`/index.html`)
+
+The root page is a compact **vertical list of glass cards** (`.hub-list` / `.hub-card`), centered in the viewport. No horizontal grid — cards stack in a single column, `max-width: 480px`.
+
+Each card is two short lines:
+
+```
+[BADGE] Title          →
+        Description
+```
+
+- **Layout**: `.hub-card-head` (badge + title inline) on the first line, `.hub-card-desc` below. Padding stays tight (`~0.95rem 1.1rem`) so each card is only as tall as its two lines.
+- **Badge tag**: same bordered-tag pattern as `.page-badge` — mono, `var(--accent)`, `1px solid var(--accent-border)`, `border-radius: var(--r-tag)`. Used inline as a label, not a full-width eyebrow.
+- **Right-side indicator**: a single glyph absolutely positioned, vertically centered at `right: 1.1rem`. Link cards use `→` (nudges right on hover); the Lab toggle uses `▾` (rotates 180° when expanded).
+- **Lab accordion**: the `Lab` card is a `<button>` that expands a nested sub-card (`class-gen`) below it via a `grid-template-rows: 0fr → 1fr` transition. The sub-card is indented (`margin-left`) to show hierarchy. This replaces the former nav dropdown.
+
+This page omits the nav entirely (see Nav omission).
+
+---
+
 ## Nav
 
 - Fixed, `height: var(--nav-h)` (64px), `backdrop-filter: blur(16px)`
@@ -173,6 +193,7 @@ Each page (`index.html`, `404/index.html`, sub-pages like `vrc/index.html`, etc.
 
 | Path | Description | Nav |
 |---|---|---|
-| `/index.html` | Main portfolio — Hero, Skills, Pages, Contact | Yes |
-| `/404/index.html` | 404 error page | No |
-| `/vrc/index.html` | VRChat avatar works (planned) | TBD |
+| `/index.html` | Landing hub — compact vertical card list (also served as 404) | No |
+| `/portfolio/index.html` | Main portfolio — Hero, Skills, Pages, Contact | Yes |
+| `/vrc/index.html` | VRChat avatar works | No |
+| `/lab/class-gen/index.html` | UML class diagram editor tool | No |
